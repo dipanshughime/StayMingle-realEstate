@@ -1,9 +1,9 @@
-import express, { Router } from 'express'; // Correct the import of Router
-import { createResidency, getAllResidencies, getResidency } from '../controllers/residencyController.js';
+import express from "express";
+import { createResidency, getAllResidencies, getResidency } from "../controllers/resdCntrl.js";
+import jwtCheck from "../config/auth0Config.js";
+const router = express.Router();
 
-const router = Router(); // Use Router() with a capital "R"
-
-router.post ("/create",createResidency)
+router.post("/create", jwtCheck, createResidency)
 router.get("/allresd", getAllResidencies)
 router.get("/:id", getResidency)
-export { router as residencyRoute };  
+export {router as residencyRoute}
